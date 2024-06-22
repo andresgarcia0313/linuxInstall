@@ -63,5 +63,16 @@ flatpak install -y org.inkscape.Inkscape
 flatpak install -y com.visualstudio.code
 flatpak install -y org.remmina.Remmina
 flatpak install -y com.skype.Client
-flatpak install -y org.keepassxc.KeePassXC
+flatpak install -y com.github.d4nj1.tlpui
+flatpak install -y com.google.Chrome
+flatpak install -y org.chromium.Chromium
+flatpak install -y com.wps.Office
+flatpak install -y org.onlyoffice.desktopeditors
 flatpak override --user --device=all com.skype.Client
+flatpak install -y net.pcsx2.PCSX2
+flatpak install -y org.libretro.RetroArch
+flatpak install -y io.github.simple64.simple64
+flatpak install -y org.duckstation.DuckStation
+flatpak install -y com.github.wwmm.easyeffects
+
+
