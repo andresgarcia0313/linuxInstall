@@ -1,0 +1,57 @@
+Ollama es una plataforma que permite ejecutar modelos de inteligencia artificial de última generación de manera local. Recientemente ha lanzado Llama 3, que es una versión mejorada de Llama 2, con un conjunto de datos siete veces mayor y una longitud de contexto duplicada, alcanzando los 8K tokens. Esto mejora significativamente la eficiencia en la codificación del lenguaje y reduce los errores de "rechazo" en más de un tercio en comparación con Llama 2​ (Ollama)​.
+
+Ollama es compatible con la API de Chat Completions de OpenAI, lo que facilita su integración con diversas herramientas y aplicaciones existentes. Para utilizar Ollama de manera local, se puede descargar y ejecutar modelos como Llama 2 o Mistral, y se pueden hacer solicitudes utilizando formatos de API similares a los de OpenAI​ (Ollama)​.
+
+Además, Ollama planea lanzar en el futuro modelos con capacidades multimodales y de conversación en múltiples idiomas, así como un modelo aún más avanzado de 400 mil millones de parámetros​ (Ollama)​. Puedes encontrar más información y descargar Ollama desde su sitio web: ollama.com.
+
+Cual es la forma más simple y facil de integrar ollama a kate y que quede lo más similar a vscode con copilot?
+ChatGPT
+Para integrar Ollama en Kate y tener una experiencia similar a Visual Studio Code con GitHub Copilot, sigue estos pasos:
+
+Descargar e instalar Ollama:
+Primero, descarga e instala Ollama desde su sitio web oficial: ollama.com.
+
+Configurar Ollama:
+Configura Ollama para usar los modelos necesarios. Por ejemplo, puedes usar Llama 3:
+
+sh
+Copiar código
+ollama run llama3
+Configurar la API de Ollama:
+Ollama es compatible con la API de OpenAI, lo que facilita su integración con varias herramientas. Asegúrate de que Ollama esté corriendo en tu máquina local en el puerto 11434.
+
+Instalar Kate:
+Si aún no tienes Kate, instálalo desde los repositorios de tu distribución Linux o desde KDE Applications.
+
+Configurar Kate para usar Ollama:
+Aunque Kate no tiene una integración directa con GitHub Copilot, puedes utilizar scripts y plugins para lograr una funcionalidad similar. Aquí te dejo una forma simple de hacerlo utilizando un script de Python que llame a la API de Ollama:
+
+Crea un script de Python que envíe solicitudes a la API de Ollama:
+
+python
+Copiar código
+import requests
+
+def get_completion(prompt):
+    response = requests.post(
+        'http://localhost:11434/v1/chat/completions',
+        headers={'Content-Type': 'application/json'},
+        json={
+            'model': 'llama3',
+            'messages': [{'role': 'user', 'content': prompt}]
+        }
+    )
+    return response.json()['choices'][0]['message']['content']
+
+# Ejemplo de uso
+prompt = "Escribe una función en Python para calcular el factorial de un número."
+print(get_completion(prompt))
+Guarda este script como ollama_integration.py.
+
+Integrar el script en Kate:
+Puedes configurar Kate para ejecutar este script y mostrar los resultados. Usa la funcionalidad de terminal integrada de Kate para ejecutar el script.
+
+Automatizar las sugerencias:
+Para una experiencia más automatizada, puedes crear un plugin o usar un script que se ejecute en segundo plano y capture el contenido del editor, enviando el texto a la API de Ollama y mostrando las sugerencias directamente en Kate.
+
+Aunque esta integración no será tan fluida como la de GitHub Copilot en VSCode, te permitirá aprovechar las capacidades de Ollama para generar código y obtener sugerencias inteligentes en Kate.

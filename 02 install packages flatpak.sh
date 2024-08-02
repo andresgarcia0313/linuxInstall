@@ -1,3 +1,4 @@
+#!/bin/bash
 flatpak install -y ch.theologeek.Manuskript
 flatpak install -y com.brave.Browser
 flatpak install -y com.discordapp.Discord
@@ -40,6 +41,7 @@ flatpak install -y org.jdownloader.JDownloader
 flatpak install -y org.jitsi.jitsi-meet
 flatpak install -y org.kde.digikam
 flatpak install -y org.kde.filelight
+flatpak override --user org.kde.filelight --filesystem=host
 flatpak install -y org.kde.kdenlive
 flatpak install -y org.kde.krita
 flatpak install -y org.kde.okular
@@ -55,7 +57,7 @@ flatpak install -y org.speed_dreams.SpeedDreams
 flatpak install -y org.synfig.SynfigStudio
 flatpak install -y org.tuxfamily.StuntRally
 flatpak install -y edu.stanford.Almond
-flatpak install -y flathub io.github.jean28518.Linux-Assistant
+flatpak install -y io.github.jean28518.Linux-Assistant
 flatpak install -y com.nextcloud.desktopclient.nextcloud
 flatpak install -y com.valvesoftware.Steam
 flatpak install -y org.gimp.GIMP
@@ -74,5 +76,16 @@ flatpak install -y org.libretro.RetroArch
 flatpak install -y io.github.simple64.simple64
 flatpak install -y org.duckstation.DuckStation
 flatpak install -y com.github.wwmm.easyeffects
-
-
+flatpak install -y org.musicbrainz.Picard
+flatpak install -y org.clementine_player.Clementine
+sudo flatpak override --user org.clementine_player.Clementine \
+    --filesystem=home \
+    --filesystem=xdg-documents \
+    --filesystem=xdg-download \
+    --filesystem=xdg-music \
+    --filesystem=xdg-pictures \
+    --filesystem=xdg-videos \
+    --talk-name=org.freedesktop.Notifications
+flatpak install flathub org.mozilla.Thunderbird -y
+sudo flatpak override --filesystem=home org.mozilla.Thunderbird
+#https://gist.github.com/zachvlat/be9336f49f147f419be8e7a9f4013fb8
